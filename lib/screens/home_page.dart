@@ -19,20 +19,38 @@ class MyHomePage extends StatelessWidget {
             const Text(
               'You have pushed the button this many times:',
             ),
+            Selector<Model, int>(
+              selector: (context, value) => value.counterPlusGetter,
+              builder: (context, value, child) {
+                debugPrint('counterPlus');
+                return Text(
+                  '$value',
+                  style: Theme.of(context).textTheme.headline4,
+                );
+              },
+            ),
+            Selector<Model, String>(
+              selector: (context, value) => value.getChangedName,
+              builder: (context, value, child) {
+                debugPrint('counterMinus');
+                return Text(
+                  value,
+                  style: Theme.of(context).textTheme.headline4,
+                );
+              },
+            ),
             Consumer<Model>(
-              builder: (context, value, child) => Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    '${value.counter}',
-                    style: Theme.of(context).textTheme.headline4,
-                  ),
-                  FloatingActionButton(
-                    onPressed: value.incrementCounter,
-                    tooltip: 'Increment',
-                    child: const Icon(Icons.add),
-                  ),
-                ],
+              builder: (context, value, child) => FloatingActionButton(
+                onPressed: value.incrementCounter,
+                tooltip: 'Increment',
+                child: const Icon(Icons.add),
+              ),
+            ),
+            Consumer<Model>(
+              builder: (context, value, child) => FloatingActionButton(
+                onPressed: value.changeMyName,
+                tooltip: 'Change',
+                child: const Icon(Icons.change_circle),
               ),
             ),
           ],
@@ -43,10 +61,22 @@ class MyHomePage extends StatelessWidget {
 }
 
 class Model with ChangeNotifier {
-  int counter = 0;
+  int counterPlus = 0;
+  String myName = 'Ehab';
+
+  get counterPlusGetter => counterPlus;
+
+  get getChangedName => myName;
 
   void incrementCounter() {
-    counter++;
+    counterPlus++;
     notifyListeners();
   }
+
+  void changeMyName() {
+    myName = 'Ahmed';
+    notifyListeners();
+  }
+
+// get getCounter => counter;
 }
