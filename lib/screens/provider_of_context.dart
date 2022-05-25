@@ -23,12 +23,12 @@ class ProviderItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<ProviderOfContextModel>(context);
+    var provider = Provider.of<ProviderOfContextModel>(context,listen: false);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text(provider.text),
+        Text(context.watch<ProviderOfContextModel>().text),// can listen to changes using context.watch and update the text in UI
         RaisedButton(
           child: const Text('Test Provider of context'),
           onPressed: () {
