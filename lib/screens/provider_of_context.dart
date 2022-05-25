@@ -28,7 +28,8 @@ class ProviderItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text(context.watch<ProviderOfContextModel>().text),// can listen to changes using context.watch and update the text in UI
+        // Text(context.watch<ProviderOfContextModel>().text),// (watch)can listen to changes using context.watch and update the text in UI
+        Text(context.read<ProviderOfContextModel>().text),// (read)can't listen to changes using context.watch and update the text in UI
         RaisedButton(
           child: const Text('Test Provider of context'),
           onPressed: () {
