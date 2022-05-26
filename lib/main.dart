@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:state_man_with_provider/screens/home_page.dart';
-import 'package:state_man_with_provider/screens/provider_of_context.dart';
+import 'package:state_man_with_provider/screens/change_notifire_provider.dart';
+import 'package:state_man_with_provider/screens/provider_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const ProviderWithContext(),
+      home: const ProviderPage(),
     );
   }
 }
